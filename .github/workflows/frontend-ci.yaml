@@ -1,5 +1,3 @@
-mkdir -p .github/workflows
-cat > .github/workflows/frontend-ci.yaml << 'EOF'
 name: Frontend Continuous Integration
 
 on:
@@ -82,4 +80,3 @@ jobs:
       - name: Build docker image
         run: |
           docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag=mp-frontend:latest .
-EOF
