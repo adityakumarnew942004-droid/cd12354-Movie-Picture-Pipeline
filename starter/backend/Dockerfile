@@ -17,8 +17,8 @@ RUN apk update && \
 RUN mkdir -p /var/www/app && mkdir /app
 
 COPY Pipfile* /app
-RUN cd /app && pipenv install --system --deploy
+RUN cd /app && CFLAGS="-Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration" pipenv install --system --deploy
 
 COPY . /app
 
-CMD uwsgi --http :5000 --master --enable-threads -s /var/www/app/app.sock --manage-script-name --mount /=app:app
+CMD uwsgi --http :5000 --master --enable-threads -s /var/www/app/app.sock --manage-script-name --mount /=app:app# trigger ci
